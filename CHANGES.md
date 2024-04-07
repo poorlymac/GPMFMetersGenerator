@@ -4,6 +4,11 @@ If you are updating from a previous version, pay particular attention to the cha
 
 ## 4.xx
 
+### 4.06
+
+Add time when generating GPX from video.
+It eases inclusion of data from your GoPro video in a global GPX trace, especially to generate stories.
+
 ### 4.05
 
 Add slope grade in speed widget
