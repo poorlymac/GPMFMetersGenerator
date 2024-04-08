@@ -290,7 +290,7 @@ For each of the videos, the summary displays:
   - **Partial GPS** - Missing satellite during the video
   - **Bad signal** - Weak GPS signal during the whole video
   - **Weak signal** - Weak GPS signal partially during the video
-  - **not ending** - can't find an ending point for the video (generally due to the GPX to stopped before the video or a video not part of this hiking)
+  - **not ending** - can't find an ending point for the video (generally due to the GPX to be stopped before the video or a video not part of this hiking)
   - **Overlapping** - videos overlap (or due to a mistake in mkStory guesses, or because one of the video is not part of the hiking).
 
 Bad example :
@@ -332,6 +332,10 @@ In some cases, the GPX files do not contain reliable timestamps (for example, wh
 
 | :warning: | "Positioning" mode is much more *random* than timestamp mode.<br> The results are better if there is no path overlap, but in the case of a round trip, it is really difficult to have a correct result (I am working on a better algorithm).  |
 |-------------|----------------------------|
+
+#### Help mkStory by manually editing GPX file
+
+In some cases, the issue is due to a bad quality of positioning signal (of your phone). In such cases, it can be solved by exporting GPX data from the GoPro video (take a look on `GPMFMetersGenerator -X` option),  and replace originals GPX parts with GoPro ones. Only GPX editor can help.
 
 #### Last chance : manuel edition (good luck)
 
