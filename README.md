@@ -335,7 +335,7 @@ In some cases, the GPX files do not contain reliable timestamps (for example, wh
 
 #### Help mkStory by manually editing GPX file
 
-In some cases, the issue is due to a bad quality of positioning signal (of your phone). In such cases, it can be solved by exporting GPX data from the GoPro video (take a look on `GPMFMetersGenerator -X` option),  and replace originals GPX parts with GoPro ones. Only GPX editor can help.
+In some cases, the issue is due to a bad quality of positioning signal (of your phone). In such cases, it can be solved by exporting GPX data from the GoPro video (take a look on `GPMFMetersGenerator -X` option),  and replace originals GPX parts with GoPro ones. Online GPX editor can help.
 
 #### Last chance : manuel edition (good luck)
 
