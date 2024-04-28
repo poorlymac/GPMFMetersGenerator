@@ -91,7 +91,12 @@ static bool lookFor(FILE *f, const char *string){
 }
 
 void GPX::Dump( void ){
-	puts("*I* GPX min/max:");
+	printf("*I* GPX min/max: (%u samples)\n", this->getSampleCount());
+	if(!this->getSampleCount()){
+		puts("*E* No sample recognised : wrong file format ?");
+		exit(EXIT_FAILURE);
+	}
+
 	printf("\tlatitude : %f -> %f (%f)\n", this->getMin().getLatitude(), this->getMax().getLatitude(), this->getMax().getLatitude() - this->getMin().getLatitude());
 	printf("\tlongitude : %f -> %f (%f)\n", this->getMin().getLongitude(), this->getMax().getLongitude(), this->getMax().getLongitude() - this->getMin().getLongitude());
 	printf("\taltitude: %f -> %f (%f)\n", this->getMin().getAltitude(), this->getMax().getAltitude(), this->getMax().getAltitude() - this->getMin().getAltitude());
