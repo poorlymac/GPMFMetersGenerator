@@ -29,6 +29,7 @@ void Export::generateGPX( const char *fulltarget, char *filename, char *iname ){
 	for(auto p : this->video.getSamples()){
 		fprintf(f, "\t\t\t<trkpt lat=\"%f\" lon=\"%f\">\n", p.getLatitude(), p.getLongitude());
 		fprintf(f, "\t\t\t\t<ele>%f</ele>\n", p.getAltitude());
+		fprintf(f, "\t\t\t\t<time>%s</time>\n", p.strLocalTime().c_str());
 		fputs("\t\t\t</trkpt>\n", f);
 	}
 
