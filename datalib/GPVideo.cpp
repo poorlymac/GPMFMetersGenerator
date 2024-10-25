@@ -86,6 +86,12 @@ void GPVideo::readGPMF( double cumul_dst ){
 				}
 				uint32_t *data = (uint32_t *)GPMF_RawData(ms);
 				gfix = BYTESWAP32(*data);
+				if (gfix != 3) {
+					if(debug){
+						printf("*E* ignoring poor fix %u\n", (unsigned)gfix);
+					}
+					continue;
+				}
 			}
 
 			if(GPMF_OK == GPMF_FindNext(ms, STR2FOURCC("GPSU"), (GPMF_LEVELS)(GPMF_RECURSE_LEVELS|GPMF_TOLERANT) )){	// find out GPS time if any
@@ -361,9 +367,10 @@ GPVideo::GPVideo( char *fch, unsigned int asample, double cumul_dst ) : nextsamp
 		fputs("*E* filename doesn't correspond to a GoPro video\n", stderr);
 		exit(EXIT_FAILURE);
 	}
+	bool firstfile = true;
 	if(strncmp(fname + len - 12, "GX01", 4) && strncmp(fname + len - 12, "GH01", 4)){
-		fputs("*E* not a GoPro video or not the 1st one\n", stderr);
-		exit(EXIT_FAILURE);
+		printf("*L* not a GoPro named video, or not the 1st one\n");
+		firstfile = false;
 	}
 	len -= 10;	// point to the part number
 
@@ -391,8 +398,8 @@ GPVideo::GPVideo( char *fch, unsigned int asample, double cumul_dst ) : nextsamp
 	this->mp4handle = 0;
 
 
-		/* Check if there are others parts */
-
+		/* Check if there are others parts only if its the first file*/
+ if(firstfile) {
 	for(unsigned int i = 2; i<99; i++){	// As per GoPro, up to 98 parts
 		char buff[3];
 		sprintf(buff, "%02d", i);
@@ -404,6 +411,7 @@ GPVideo::GPVideo( char *fch, unsigned int asample, double cumul_dst ) : nextsamp
 			this->AddPart(fname, cumul_dst);
 		}
 	}
+ }
 	
 	free(fname);
 }
