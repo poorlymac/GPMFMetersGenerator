@@ -7,6 +7,11 @@ gotoall: all
 #The compiler (may be customized for compiler's options).
 cc=g++ -Wall -O2
 opts=-lm
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	# Make a FAT binary
+	opts=-lm -arch arm64 -arch x86_64
+endif
 
 Context.o : Context.cpp Context.h Makefile 
 	$(cc) -c -o Context.o Context.cpp $(opts) 

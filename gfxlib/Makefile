@@ -6,7 +6,13 @@ gotoall: all
 
 #The compiler (may be customized for compiler's options).
 cc=g++ -Wall -O2
-opts=-lm $(shell pkg-config --cflags cairo ) $(shell pkg-config --libs cairo )
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	# Make a FAT binary
+	opts=-lm $(shell pkg-config --cflags cairo ) $(shell pkg-config --libs cairo ) -arch arm64 -arch x86_64
+else
+	opts=-lm $(shell pkg-config --cflags cairo ) $(shell pkg-config --libs cairo ) 
+endif
 
 AltitudeGfx.o : AltitudeGfx.cpp AltitudeGfx.h Gfx.h \
   ../datalib/Context.h ../datalib/GPVideo.h ../datalib/GPX.h Makefile 
