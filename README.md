@@ -347,7 +347,7 @@ A small commandline utility to extact the GPS log in the GPMF stream to a GPX fi
 
 ### GoPro Multiple files
 
-You may be aware GoPro will write multiple files whern the file size gets to a certain point, we can recommend [mp4-merge](https://github.com/gyroflow/mp4-merge) as a utility that merge multiple files without damaging their GPMF metadata stream.
+You may be aware GoPro will write multiple files when the file size gets to a certain point, we can recommend [mp4-merge](https://github.com/gyroflow/mp4-merge) as a utility that merge multiple files without damaging their GPMF metadata stream.
 
 ---
 
