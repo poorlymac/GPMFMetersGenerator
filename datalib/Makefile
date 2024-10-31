@@ -5,7 +5,7 @@ gotoall: all
 
 
 #The compiler (may be customized for compiler's options).
-cc=g++ -Wall -O2
+cc=g++ -Wall -O2 -std=c++17
 opts=-lm
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Darwin)

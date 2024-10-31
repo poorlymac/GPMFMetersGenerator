@@ -37,7 +37,11 @@ void Export::generateGPX( const char *fulltarget, int skipseconds){
 		}
 		fprintf(f, "\t\t\t<trkpt lat=\"%f\" lon=\"%f\">\n", p.getLatitude(), p.getLongitude());
 		fprintf(f, "\t\t\t\t<ele>%f</ele>\n", p.getAltitude());
-		fprintf(f, "\t\t\t\t<time>%s</time>\n", p.strLocalTime().c_str());
+		if (p.getSampleTimeMS().time_since_epoch().count() != 0) {
+			fprintf(f, "\t\t\t\t<time>%s</time>\n", date::format("%FT%TZ", p.getSampleTimeMS()).c_str());
+		} else {
+			fprintf(f, "\t\t\t\t<time>%s</time>\n", p.strLocalTime().c_str());
+		}
 		fputs("\t\t\t</trkpt>\n", f);
 	}
 
