@@ -124,14 +124,11 @@ void GPVideo::readGPMF( double cumul_dst ){
 				std::string oString;
 				oString = p;
 				istringstream in{oString};
-				printf("*I* GPSU : '%s' ", p);
 				// Example is 240907235800.499GPSPS^B
 				in >> parse("%y%m%d%H%M%6S", tp);
 				if (in.fail()) {
 					in.clear();
 					printf("*E* GPSU : Date parse failure for '%s' ", p);
-				} else {
-					std::cout << "ISO8601: " << date::format("%FT%TZ", tp) << '\n';
 				}
 
 				struct tm t;
