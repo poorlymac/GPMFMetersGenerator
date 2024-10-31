@@ -8,6 +8,7 @@ gotoall: all
 cc=g++ -Wall -O2 -std=c++17
 UNAME_S := $(shell uname -s)
 opts=-lm -L. -lgfxlib -ldatalib -lGPMF $(shell pkg-config --cflags cairo ) $(shell pkg-config --libs cairo ) 
+mopts=-lm -L. -lgfxlib -ldatalib -lGPMF
 ifeq ($(UNAME_S),Darwin)
   # Make a FAT binary
   fat=-arch arm64 -arch x86_64 
@@ -29,7 +30,7 @@ gpmf2gpx.o : gpmf2gpx.cpp datalib/Context.h \
   gfxlib/Export.h gfxlib/QualityGfx.h gfxlib/TrkStatGfx.h Version.h \
   libgfxlib.a libdatalib.a MakefileLocal 
 	$(cc) -c -o gpmf2gpx.o gpmf2gpx.cpp \
-  $(opts) $(fat) 
+  $(mopts) $(fat) 
 
 GPMFMetersGenerator : GPMFMetersGenerator.o libgfxlib.a libdatalib.a \
   MakefileLocal 
@@ -37,7 +38,7 @@ GPMFMetersGenerator : GPMFMetersGenerator.o libgfxlib.a libdatalib.a \
 
 gpmf2gpx : gpmf2gpx.o libgfxlib.a libdatalib.a \
   MakefileLocal 
-	 $(cc) -o gpmf2gpx gpmf2gpx.o $(opts) $(fat)
+	 $(cc) -o gpmf2gpx gpmf2gpx.o $(mopts) $(fat)
 
 mkStory.o : mkStory.cpp datalib/Context.h datalib/GPVideo.h \
   datalib/GPX.h Version.h libgfxlib.a libdatalib.a MakefileLocal 
